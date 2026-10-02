@@ -1,12 +1,14 @@
 #pragma once
 
 #include <cstddef>
+#include <iosfwd>
 
 namespace iskrac {
 
 struct Position {
     std::size_t line{ 0 };
     std::size_t column{ 0 };
+    std::streampos lastLineStart{ 0 };
 };
 
 struct Token {
