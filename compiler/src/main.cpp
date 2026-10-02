@@ -3,7 +3,7 @@
 #include <sstream>
 #include <filesystem>
 
-#include "iskra/source_text.hpp"
+#include "iskrac/source_text.hpp"
 
 int main(int argc, char* argv[]) {
     
