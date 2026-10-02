@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 
+#include "tokens.hpp"
+
 namespace iskrac {
 
 class SourceText {
@@ -16,6 +18,8 @@ public:
     bool eof();
 
     std::string name();
+    
+    std::string getLineFor(Position);
 
     int peek();
     int advance();
