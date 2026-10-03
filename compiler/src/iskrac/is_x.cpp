@@ -9,21 +9,27 @@ bool isDigit(int c) {
 }
 
 bool isOperator(int c) {
+    // clang-format off
     return std::find_if(
-               OPERATORS.begin(),
-               OPERATORS.end(),
-               [c](auto& pair) -> bool {
-                   return pair.first.starts_with(static_cast<char>(c));
-               }) != OPERATORS.end();
+        OPERATORS.begin(),
+        OPERATORS.end(),
+        [c](auto& pair) -> bool {
+            return pair.first.starts_with(static_cast<char>(c));
+        }
+    ) != OPERATORS.end();
+    // clang-format on
 }
 
 bool isBracket(int c) {
+    // clang-format off
     return std::find_if(
-               BRACKETS.begin(),
-               BRACKETS.end(),
-               [c](auto& pair) -> bool {
-                   return pair.first.starts_with(static_cast<char>(c));
-               }) != BRACKETS.end();
+        BRACKETS.begin(),
+        BRACKETS.end(),
+        [c](auto& pair) -> bool {
+            return pair.first.starts_with(static_cast<char>(c));
+        }
+    ) != BRACKETS.end();
+    // clang-format on
 }
 
 bool isSpace(int c) {

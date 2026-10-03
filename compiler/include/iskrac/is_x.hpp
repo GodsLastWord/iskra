@@ -6,6 +6,7 @@ namespace iskrac {
 
 bool isDigit(int);
 bool isOperator(int);
+bool isOperator(const std::string&);
 bool isBracket(int);
 bool isSpace(int);
 
