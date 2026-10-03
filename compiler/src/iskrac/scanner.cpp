@@ -3,6 +3,7 @@
 #include "iskrac/is_x.hpp"
 #include "iskrac/lexemes_to_kinds.hpp"
 #include "iskrac/tokens.hpp"
+#include <print>
 
 namespace iskrac {
 
@@ -123,6 +124,7 @@ Token Scanner::scanOperator() {
     while (isOperator(buf)) {
         buf += advance();
     }
+    buf.pop_back();
 
     return { OPERATORS.at(buf), strings.add(buf), position };
 }
@@ -134,6 +136,7 @@ Token Scanner::scanBracket() {
     while (isBracket(buf)) {
         buf += advance();
     }
+    buf.pop_back();
 
     return { BRACKETS.at(buf), strings.add(buf), position };
 }
