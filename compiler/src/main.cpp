@@ -30,13 +30,13 @@ int main(int argc, char* argv[]) {
 
     try {
         for (Token t = scan.next(); t.kind != Token::Kind::_EOF; t = scan.next()) {
-            std::println(
-                "{:>5}[{:>3}, {:>3}] -> `{}`",
-                int(t.kind),
-                t.position.line,
-                t.position.column,
-                strings.get(t.lexeme)
-            );
+            // std::println(
+            //     "{:>5}[{:>3}, {:>3}] -> `{}`",
+            //     int(t.kind),
+            //     t.position.line,
+            //     t.position.column,
+            //     strings.get(t.lexeme)
+            // );
         }
     }
 

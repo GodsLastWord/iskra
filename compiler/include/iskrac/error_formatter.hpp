@@ -27,7 +27,7 @@ public:
     void error(const Token& errorToken, std::format_string<Arguments...> message, Arguments&&... args) {
         std::println(
             std::cerr,
-            "{}:[{}, {}]:error: {}\n{:>5} | {}",
+            "{}:[{}, {}]:error: {}\n{:>5} | {}\n",
             source.name(),
             errorToken.position.line,
             errorToken.position.column,
