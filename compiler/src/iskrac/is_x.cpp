@@ -9,19 +9,41 @@ bool isDigit(int c) {
 }
 
 bool isOperator(int c) {
-    return std::find_if(OPERATORS.begin(), OPERATORS.end(), [c](auto& pair) -> bool {
-        return pair.first.starts_with(static_cast<char>(c));
-    }) != OPERATORS.end();
+    return std::find_if(
+               OPERATORS.begin(),
+               OPERATORS.end(),
+               [c](auto& pair) -> bool {
+                   return pair.first.starts_with(static_cast<char>(c));
+               }) != OPERATORS.end();
 }
 
 bool isBracket(int c) {
-    return std::find_if(BRACKETS.begin(), BRACKETS.end(), [c](auto& pair) -> bool {
-        return pair.first.starts_with(static_cast<char>(c));
-    }) != BRACKETS.end();
+    return std::find_if(
+               BRACKETS.begin(),
+               BRACKETS.end(),
+               [c](auto& pair) -> bool {
+                   return pair.first.starts_with(static_cast<char>(c));
+               }) != BRACKETS.end();
 }
 
 bool isSpace(int c) {
     return std::isspace(c);
+}
+
+bool isValidInt32Literal(const std::string& literal) {
+    for (char c : literal) {
+        if (!isDigit(c)) return false;
+    }
+
+    try {
+        [[maybe_unused]]
+        int x = std::stoi(literal);
+        return true;
+    }
+
+    catch (...) {
+        return false;
+    }
 }
 
 } // namespace iskrac
