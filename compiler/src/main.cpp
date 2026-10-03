@@ -1,12 +1,12 @@
-#include <print>
-#include <iostream>
-#include <sstream>
 #include <filesystem>
+#include <iostream>
+#include <print>
 
-#include "iskrac/source_text.hpp"
+#include "iskrac/scanner.hpp"
 
 int main(int argc, char* argv[]) {
-    
+    using namespace iskrac;
+
     if (argc < 2) {
         std::println(std::cerr, "error: no input files");
         return 1;
@@ -24,12 +24,25 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    std::stringstream buf;
-    for (int c = text.advance(); !text.eof(); c = text.advance()) {
-        buf << static_cast<char>(c);
+    ErrorFormatter errfmt{ text };
+    StringSpace strings;
+    Scanner scan{ text, strings, errfmt };
+
+    try {
+        for (Token t = scan.next(); t.kind != Token::Kind::_EOF; t = scan.next()) {
+            std::println(
+                "{:>5}[{:>3}, {:>3}] -> `{}`",
+                int(t.kind),
+                t.position.line,
+                t.position.column,
+                strings.get(t.lexeme)
+            );
+        }
     }
 
-    std::println("```\n{}```", buf.str());
+    catch (std::exception& e) {
+        std::println("{}", e.what());
+    }
 
     return 0;
 }
