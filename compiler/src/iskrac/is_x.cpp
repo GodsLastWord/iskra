@@ -20,6 +20,10 @@ bool isOperator(int c) {
     // clang-format on
 }
 
+bool isOperator(const std::string& s) {
+    return OPERATORS.contains(s);
+}
+
 bool isBracket(int c) {
     // clang-format off
     return std::find_if(
@@ -30,6 +34,10 @@ bool isBracket(int c) {
         }
     ) != BRACKETS.end();
     // clang-format on
+}
+
+bool isBracket(const std::string& s) {
+    return BRACKETS.contains(s);
 }
 
 bool isSpace(int c) {
