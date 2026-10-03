@@ -15,22 +15,26 @@ class ErrorFormatter {
     bool errors{ false };
 
 public:
-    explicit ErrorFormatter(SourceText&);
+    explicit ErrorFormatter(SourceText& source)
+        : source{ source } {
+    }
 
     inline bool hadErrors() {
         return errors;
     }
 
     template<typename... Arguments>
-    void error(const Token& errorToken, std::format_string<Arguments...> message, Arguments&& ... args) {
+    void error(
+        const Token& errorToken,
+        std::format_string<Arguments...> message,
+        Arguments&&... args) {
         std::println(
             std::cerr,
             "{}:[{}, {}]:error: {}",
             source.name(),
             errorToken.position.line,
             errorToken.position.column,
-            std::format(message, std::forward<Arguments>(args)...)
-        );
+            std::format(message, std::forward<Arguments>(args)...));
     }
 };
 
