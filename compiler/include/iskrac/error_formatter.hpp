@@ -24,17 +24,17 @@ public:
     }
 
     template<typename... Arguments>
-    void error(
-        const Token& errorToken,
-        std::format_string<Arguments...> message,
-        Arguments&&... args) {
+    void error(const Token& errorToken, std::format_string<Arguments...> message, Arguments&&... args) {
         std::println(
             std::cerr,
-            "{}:[{}, {}]:error: {}",
+            "{}:[{}, {}]:error: {}\n{:>5} | {}",
             source.name(),
             errorToken.position.line,
             errorToken.position.column,
-            std::format(message, std::forward<Arguments>(args)...));
+            std::format(message, std::forward<Arguments>(args)...),
+            errorToken.position.line,
+            source.getLineFor(errorToken.position)
+        );
     }
 };
 
