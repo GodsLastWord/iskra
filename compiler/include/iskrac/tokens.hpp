@@ -19,6 +19,7 @@ struct Token {
 
         ERROR,
         UNRECOGNIZED,
+        INVALID_INT32_LITERAL,
 
         INT32_LITERAL,
 
