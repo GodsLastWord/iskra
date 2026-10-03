@@ -174,18 +174,18 @@ int Scanner::advance() {
     if (peek() == '\n') {
         lineCounter++;
         columnCounter = 0;
+        lastLineStart = source.afterCurrentPosition();
     }
     columnCounter++;
 
     source.advance();
-    lastLineStart = source.absoluteCurrentPosition();
 
     return peek();
 }
 
 void Scanner::handleError(const Token& error) {
     using TK = Token::Kind;
-    
+
     switch (error.kind) {
         case TK::PLACEHOLDER:
             errfmt.error(error, "placeholder token has been produced");
