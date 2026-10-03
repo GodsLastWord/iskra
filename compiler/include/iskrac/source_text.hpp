@@ -18,8 +18,8 @@ public:
     bool eof();
 
     std::string name();
-    
     std::string getLineFor(Position);
+    std::streampos absoluteCurrentPosition();
 
     int peek();
     int advance();

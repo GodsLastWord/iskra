@@ -35,6 +35,10 @@ std::string SourceText::getLineFor(Position position) {
     return line;
 }
 
+std::streampos SourceText::absoluteCurrentPosition() {
+    return file.tellg();
+}
+
 int SourceText::peek() {
     return file.peek();
 }
