@@ -39,6 +39,12 @@ std::streampos SourceText::absoluteCurrentPosition() {
     return file.tellg();
 }
 
+std::streampos SourceText::afterCurrentPosition() {
+    std::streampos p = file.seekg(1, std::ios::cur).tellg();
+    file.seekg(-1, std::ios::cur);
+    return p;
+}
+
 int SourceText::peek() {
     return file.peek();
 }

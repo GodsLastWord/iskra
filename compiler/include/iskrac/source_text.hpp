@@ -20,6 +20,7 @@ public:
     std::string name();
     std::string getLineFor(Position);
     std::streampos absoluteCurrentPosition();
+    std::streampos afterCurrentPosition();
 
     int peek();
     int advance();
