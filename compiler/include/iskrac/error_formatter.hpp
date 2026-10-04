@@ -36,6 +36,15 @@ public:
             source.getLineFor(errorToken.position)
         );
     }
+
+    template<typename... Arguments>
+    void expected(const Token& errorToken, std::format_string<Arguments...> message, Arguments&& ... args) {
+        error(
+            errorToken,
+            "expected {}",
+            std::format(message, std::forward<Arguments>(args)...)
+        );
+    }
 };
 
 } // namespace iskrac
