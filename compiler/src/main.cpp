@@ -2,7 +2,8 @@
 #include <iostream>
 #include <print>
 
-#include "iskrac/scanner.hpp"
+#include "iskrac/parser.hpp"
+#include "iskrac/visitors/ast_printer.hpp"
 
 int main(int argc, char* argv[]) {
     using namespace iskrac;
@@ -26,18 +27,12 @@ int main(int argc, char* argv[]) {
 
     ErrorFormatter errfmt{ text };
     StringSpace strings;
-    Scanner scan{ text, strings, errfmt };
 
     try {
-        for (Token t = scan.next(); t.kind != Token::Kind::_EOF; t = scan.next()) {
-            // std::println(
-            //     "{:>5}[{:>3}, {:>3}] -> `{}`",
-            //     int(t.kind),
-            //     t.position.line,
-            //     t.position.column,
-            //     strings.get(t.lexeme)
-            // );
-        }
+        auto expr = Parser::parse(text, strings, errfmt);
+
+        visitor::ASTPrinter printer{ strings };
+        printer.visit(*expr);
     }
 
     catch (std::exception& e) {
